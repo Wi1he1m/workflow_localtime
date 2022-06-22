@@ -5,6 +5,7 @@ jobs:
     name: Get Localtime
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: first_step
         env:
           LOCALTIME: $(date | cut -d' ' -f5)
