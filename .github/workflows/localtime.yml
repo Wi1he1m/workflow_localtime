@@ -10,6 +10,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: first_step
         run: |
-          timedatectl set-timezone America/Los_Angeles
+          sudo timedatectl set-timezone America/Los_Angeles
           LOCALTIME=$(date | cut -d' ' -f5)
           echo "$LOCALTIME"
