@@ -1,12 +1,12 @@
 name: localtime
 on: workflow_dispatch
+
 jobs:
   get_localtime:
     name: Get Localtime
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: first_step
-        env:
-          LOCALTIME: $(date | cut -d' ' -f5)
-        run: echo $LOCALTIME
+        run: |
+          LOCALTIME=$(date | cut -d' ' -f5)
+          echo "$LOCALTIME"
