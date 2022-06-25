@@ -21,4 +21,5 @@ jobs:
       is_spoiler: ${{ inputs.is_spoiler }}
       movie_info: ${{ inputs.movie_info}}
   called_job_localtime:
+    needs: called_job_1
     uses: ./.github/workflows/localtime.yml
