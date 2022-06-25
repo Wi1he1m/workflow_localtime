@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       timezone:
-        required: true
+        required: false
         default: "America/LosAngeles"
         type: string
 
