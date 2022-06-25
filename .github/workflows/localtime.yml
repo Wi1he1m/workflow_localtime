@@ -32,5 +32,5 @@ jobs:
           echo "::set-output name=daylight_savings::$(date | cut -d' ' -f5)"
       - name: second_step
         id: boolean_step
-        if:  ${{ steps.daylight_savings.outputs.daylight_savings == inputs.local_timezone }}
+        if:  ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == inputs.local_timezone }}
         run: echo "::set-output name=daylight_savings_bool::true"
