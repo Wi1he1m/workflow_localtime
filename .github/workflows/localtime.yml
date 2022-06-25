@@ -36,5 +36,5 @@ jobs:
         id: boolean_step
         env:
           LOCAL_TIMEZONE: ${{ inputs.local_timezone }}
-        if:  ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == $LOCAL_TIMEZONE }}
+        if: ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == $LOCAL_TIMEZONE }}
         run: echo "::set-output name=daylight_savings_bool::true"
