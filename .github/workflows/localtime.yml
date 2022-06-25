@@ -15,6 +15,6 @@ jobs:
           echo "::set-output name=localtime::$(date | cut -d' ' -f5)"
       - name: second_step  
         if:  ${{ steps.localtime.outputs.localtime == 'PDT' }}
-        run: echo "It\'s daylight savings time."
+        run: echo "It's daylight savings time (${{ steps.localtime.outputs.localtime }})."
 
           
