@@ -31,7 +31,7 @@ jobs:
       - name: setup_daylight_savings_time
         id: daylight_savings_abbreviation
         run: |
-          sudo timedatectl set-timezone '$TIMEZONE'
+          sudo timedatectl set-timezone $TIMEZONE
           echo "::set-output name=daylight_savings::$(date | cut -d' ' -f5)"
       - name: second_step
         id: boolean_step
