@@ -14,7 +14,7 @@ jobs:
           LOCALTIME=$(date | cut -d' ' -f5)
           echo $LOCALTIME >> GITHUB_ENV
       - name: second_step  
-        if:  github.env.localtime == "PDT"
+        if:  github.env.localtime == 'PDT'
         run: echo "It\'s daylight savings time."
 
           
