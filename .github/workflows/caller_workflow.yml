@@ -15,11 +15,12 @@ on:
         type: string
 
 jobs:
-  called_job_1:
+  called_job_localtime:
+    uses: ./.github/workflows/localtime.yml
+  called_job_2:
+    needs: called_job_localtime
+    if: ${{ needs.called_job_localtime.outputs.daylight_savings}}
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       is_spoiler: ${{ inputs.is_spoiler }}
       movie_info: ${{ inputs.movie_info}}
-  called_job_localtime:
-    needs: called_job_1
-    uses: ./.github/workflows/localtime.yml
