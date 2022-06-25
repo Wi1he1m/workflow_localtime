@@ -24,16 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TIMEZONE: ${{ inputs.timezone }}
-      LOCAL_TIMEZONE: ${{ inputs.local_timezone }}
     outputs:
       daylight_savings_bool: ${{ steps.boolean_step.outputs.daylight_savings_bool }}
     steps:
       - name: setup_daylight_savings_time
         id: daylight_savings_abbreviation
         run: |
-          sudo timedatectl set-timezone $env.TIMEZONE
+          sudo timedatectl set-timezone $TIMEZONE
           echo "::set-output name=daylight_savings::$(date | cut -d' ' -f5)"
       - name: second_step
         id: boolean_step
-        if: ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == env.LOCAL_TIMEZONE }}
+        if: ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == inputs.local_timezone }}
         run: echo "::set-output name=daylight_savings_bool::true"
