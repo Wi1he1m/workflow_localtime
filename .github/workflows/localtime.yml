@@ -14,7 +14,7 @@ on:
         default: 'PDT'
         type: string
     outputs:
-      daylight_savings:
+      daylight_savings_bool:
         description: "Boolean value for whether or not it is daylight savings time in your timezone"
         value: ${{ jobs.get_localtime.outputs.daylight_savings_bool }}
 
