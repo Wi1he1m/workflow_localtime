@@ -11,8 +11,7 @@ jobs:
       - name: first_step
         run: |
           sudo timedatectl set-timezone America/Los_Angeles
-          LOCALTIME=$(date | cut -d' ' -f5)
-          echo localtime=$LOCALTIME >> GITHUB_ENV
+          echo "localtime=$(date | cut -d' ' -f5)" >> GITHUB_ENV
       - name: second_step  
         if:  github.env.localtime == 'PDT'
         run: echo "It\'s daylight savings time."
