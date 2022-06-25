@@ -1,6 +1,12 @@
 name: localtime
 
-on: workflow_dispatch
+on: 
+  workflow_call:
+    inputs:
+      timezone:
+        required: true
+        default: "America/LosAngeles"
+        type: string
 
 jobs:
   get_localtime:
@@ -11,10 +17,8 @@ jobs:
       - name: first_step
         id: localtime
         run: |
-          sudo timedatectl set-timezone America/Los_Angeles
+          sudo timedatectl set-timezone ""${{ inputs.timezone }}""
           echo "::set-output name=localtime::$(date | cut -d' ' -f5)"
       - name: second_step  
         if:  ${{ steps.localtime.outputs.localtime == 'PDT' }}
-        run: echo "It's daylight savings time (${{ steps.localtime.outputs.localtime }})."
-
-          
+        run: echo "It's daylight savings time on the West Coast."

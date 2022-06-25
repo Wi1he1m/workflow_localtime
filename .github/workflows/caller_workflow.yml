@@ -1,0 +1,24 @@
+name: caller_workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      is_spoiler:
+        description: "This info will spoil the movie for you (true|false)"
+        default: true
+        required: true
+        type: boolean
+      movie_info:
+        description: "Enter information about the movie you are reviewing."
+        default: "The protagonist dies at the end."
+        required: true
+        type: string
+
+jobs:
+  called_job_1:
+    uses: ./.github/workflows/reusable_workflow.yml
+    with:
+      is_spoiler: ${{ inputs.is_spoiler }}
+      movie_info: ${{ inputs.movie_info}}
+  called_job_localtime:
+    uses: ./.github/workflows/localtime.yml

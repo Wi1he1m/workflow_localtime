@@ -1,0 +1,24 @@
+
+name: reusable_workflow
+
+on: 
+  workflow_call:
+    inputs:
+      is_spoiler:
+        required: true
+        type: boolean
+      movie_info:
+        required: true
+        type: string
+
+jobs:
+  called_workflow:
+    name: Called workflow test
+    runs-on: ubuntu-latest
+    steps:
+      - name: step1
+        if: inputs.is_spoiler
+        run: |
+          echo "This information will ruin the movie"
+      - name: step2
+        run: echo "${{ inputs.movie_info }}"
