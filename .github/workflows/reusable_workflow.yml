@@ -21,4 +21,4 @@ jobs:
         run: |
           echo "This information will ruin the movie"
       - name: step2
-        run: echo "${{ inputs.movie_info }}"
+        run: echo ${{ inputs.movie_info }}
