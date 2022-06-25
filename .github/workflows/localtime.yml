@@ -9,7 +9,7 @@ on:
         type: string
       daylight_savings:
         required: false
-        default: "PDT"
+        default: 'PDT'
         type: string
 
 jobs:
