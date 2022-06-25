@@ -9,11 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: first_step
+        id: localtime
         run: |
           sudo timedatectl set-timezone America/Los_Angeles
-          echo "localtime=$(date | cut -d' ' -f5)" >> GITHUB_ENV
+          echo "::set-output name=localtime::$(date | cut -d' ' -f5)"
       - name: second_step  
-        if:  env.localtime == 'PDT'
+        if:  ${{ steps.localtime.outputs.localtime == 'PDT' }}
         run: echo "It\'s daylight savings time."
 
           
