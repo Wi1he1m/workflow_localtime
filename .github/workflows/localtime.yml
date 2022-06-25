@@ -13,3 +13,6 @@ jobs:
           timedatectl set-timezone America/Los_Angeles
           LOCALTIME=$(date | cut -d' ' -f5)
           echo "$LOCALTIME"
+        if: "$LOCALTIME" == "PDT"
+          run: echo "It\'s daylight savings time."
+          
