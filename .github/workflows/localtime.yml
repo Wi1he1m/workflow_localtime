@@ -5,7 +5,7 @@ on:
     inputs:
       timezone:
         required: false
-        default: "America/LosAngeles"
+        default: "America/Los_Angeles"
         type: string
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
       - name: first_step
         id: localtime
         run: |
-          sudo timedatectl set-timezone ""${{ inputs.timezone }}""
+          sudo timedatectl set-timezone "${{ inputs.timezone }}"
           echo "::set-output name=localtime::$(date | cut -d' ' -f5)"
       - name: second_step  
         if:  ${{ steps.localtime.outputs.localtime == 'PDT' }}
