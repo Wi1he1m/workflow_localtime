@@ -27,6 +27,9 @@ on:
 jobs:
     called_job_localtime:
       uses: ./.github/workflows/localtime.yml
+      with:
+        timezone: ${{ inputs.timezone }}
+        local_timezone: ${{ inputs.local_timezone }}
     called_job_2:
       needs: called_job_localtime
       if: ${{ needs.called_job_localtime.outputs.daylight_savings_bool}}
