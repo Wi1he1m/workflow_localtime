@@ -5,12 +5,12 @@ on:
     inputs:
       timezone:
         description: "Linux local timezone setup via timedatectl"
-        required: false
+        required: true
         default: "America/Los_Angeles"
         type: string
       local_timezone:
         description: "Abbreviation for local timezone while in Daylight Savings Time (DST)"
-        required: false
+        required: true
         default: 'PDT'
         type: string
     outputs:
