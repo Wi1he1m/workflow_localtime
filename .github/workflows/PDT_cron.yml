@@ -2,7 +2,7 @@ name: PDTcronjob
 
 on:
   schedule:
-    - cron: '38 21 * * 0-6'
+    - cron: '42 21 * * 0-6'
 
 jobs:
     called_job_localtime:
@@ -12,5 +12,5 @@ jobs:
       if: ${{ needs.called_job_localtime.outputs.daylight_savings_bool}}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
-        is_spoiler: ${{ false }}
-        movie_info: ${{ "Nothing to see here." }}
+        is_spoiler: false
+        movie_info: Nothing to see here.
