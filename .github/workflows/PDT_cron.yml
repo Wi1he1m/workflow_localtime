@@ -2,18 +2,7 @@ name: caller_workflow
 
 on:
   schedule:
-    -cron '13 21 * * 0-6'
-      inputs:
-        is_spoiler:
-          description: "This info will spoil the movie for you (true|false)"
-          default: false
-          required: true
-          type: boolean
-        movie_info:
-          description: "Enter information about the movie you are reviewing."
-          default: "Setting: A beautiful planet."
-          required: true
-          type: string
+    - cron: '32 21 * * 0-6'
 
 jobs:
     called_job_localtime:
@@ -23,5 +12,5 @@ jobs:
       if: ${{ needs.called_job_localtime.outputs.daylight_savings_bool}}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
-        is_spoiler: ${{ inputs.is_spoiler }}
-        movie_info: ${{ inputs.movie_info}}
+        is_spoiler: ${{ false }}
+        movie_info: ${{ "Nothing to see here." }}
