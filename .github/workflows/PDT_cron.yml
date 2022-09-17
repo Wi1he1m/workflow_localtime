@@ -2,7 +2,7 @@ name: PDTcronjob
 
 on:
   schedule:
-    - cron: '42 21 * * 0-6'
+    - cron: '52 21 * * 0-6'
 
 jobs:
     called_job_localtime:
@@ -13,4 +13,4 @@ jobs:
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
-        movie_info: Nothing to see here.
+        movie_info: "Nothing to see here."
