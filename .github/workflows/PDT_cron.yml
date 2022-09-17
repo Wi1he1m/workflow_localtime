@@ -1,8 +1,8 @@
-name: caller_workflow
+name: PDTcronjob
 
 on:
   schedule:
-    - cron: '32 21 * * 0-6'
+    - cron: '34 21 * * 0-6'
 
 jobs:
     called_job_localtime:
