@@ -2,7 +2,7 @@ name: PSTcronjob
 
 on:
   schedule:
-    - cron: '52 20 * * 0-6'
+    - cron: '45 17 * * 0-6'
 
 jobs:
     called_job_localtime:
