@@ -11,16 +11,8 @@ jobs:
         
     called_job_2:
       needs: called_job_localtime
-      if: github.event.schedule = '30 13 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool
+      if: ${{ (github.event.schedule = '30 13 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool) || (github.event.schedule = '45 13 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool) }}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
         movie_info: "Nothing to see here."
-        
-    called_job_3:
-      needs: called_job_localtime
-      if: github.event.schedule = '45 13 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool
-      uses: ./.github/workflows/reusable_workflow.yml
-      with:
-        is_spoiler: false
-        movie_info: "Something to see here."
