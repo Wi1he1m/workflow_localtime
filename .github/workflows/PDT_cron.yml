@@ -2,15 +2,25 @@ name: PDTcronjob
 
 on:
   schedule:
-    - cron: '45 10 * * 0-6'
+    - cron: '5 13 * * *'
+    - cron: '11 13 * * *'
 
 jobs:
     called_job_localtime:
       uses: ./.github/workflows/localtime.yml
+        
     called_job_2:
       needs: called_job_localtime
-      if: ${{ needs.called_job_localtime.outputs.daylight_savings_bool}}
+      if: github.event.schedule = '5 13 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
         movie_info: "Nothing to see here."
+        
+    called_job_3:
+      needs: called_job_localtime
+      if: github.event.schedule = '11 13 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool
+      uses: ./.github/workflows/reusable_workflow.yml
+      with:
+        is_spoiler: false
+        movie_info: "Something to see here."
