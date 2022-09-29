@@ -2,7 +2,7 @@ name: cron PST & PDT
 
 on:
   schedule:
-    - cron: '55 10 * * *'
+    - cron: '45 11 * * *'
     - cron: '45 10 * * *'
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
         
     called_job_2:
       needs: called_job_localtime
-      if: ${{ (github.event.schedule == '55 10 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool) || (github.event.schedule == '45 10 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool) }}
+      if: ${{ (github.event.schedule == '45 11 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool) || (github.event.schedule == '45 10 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool) }}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
