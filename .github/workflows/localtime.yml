@@ -11,7 +11,7 @@ on:
       local_timezone:
         description: "Abbreviation for local timezone while in Daylight Savings Time (DST)"
         required: false
-        default: 'PDT'
+        default: 'PST'
         type: string
     outputs:
       daylight_savings_bool:
