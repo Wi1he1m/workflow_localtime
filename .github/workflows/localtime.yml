@@ -28,7 +28,7 @@ jobs:
     outputs:
       daylight_savings_bool: ${{ steps.return_daylight_savings_bool.outputs.daylight_savings_bool }}
     steps:
-      - name: setup_daylight_savings_time
+      - name: Setup Daylight Savings Time
         id: return_daylight_savings_bool
         run: |
           export TZ="$TIMEZONE"
