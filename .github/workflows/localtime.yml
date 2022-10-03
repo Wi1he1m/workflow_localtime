@@ -11,7 +11,7 @@ on:
       local_timezone:
         description: "Abbreviation for local timezone while in Daylight Savings Time (DST)"
         required: false
-        default: 'PST'
+        default: 'PDT'
         type: string
     outputs:
       daylight_savings_bool:
@@ -24,15 +24,17 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TIMEZONE: ${{ inputs.timezone }}
+      LOCAL_TIMEZONE: ${{ inputs.local_timezone }}
     outputs:
-      daylight_savings_bool: ${{ steps.boolean_step.outputs.daylight_savings_bool }}
+      daylight_savings_bool: ${{ steps.return_daylight_savings_bool.outputs.daylight_savings_bool }}
     steps:
       - name: setup_daylight_savings_time
-        id: daylight_savings_abbreviation
+        id: return_daylight_savings_bool
         run: |
           export TZ="$TIMEZONE"
-          echo "::set-output name=daylight_savings::$(date | cut -d' ' -f5)"
-      - name: second_step
-        id: boolean_step
-        if: ${{ steps.daylight_savings_abbreviation.outputs.daylight_savings == inputs.local_timezone }}
-        run: echo "::set-output name=daylight_savings_bool::true"
+          if [ $(date | cut -d' ' -f5) == $LOCAL_TIMEZONE ]
+          then
+            echo "::set-output name=daylight_savings_bool::true"
+          else
+            echo "::set-output name=daylight_savings_bool::false"
+          fi
