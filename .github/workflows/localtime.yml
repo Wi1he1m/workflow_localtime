@@ -23,8 +23,8 @@ jobs:
     name: Get Localtime
     runs-on: ubuntu-latest
     env:
-      TIMEZONE: ${{ inputs.timezone }}
-      LOCAL_TIMEZONE: ${{ inputs.local_timezone }}
+      TIMEZONE: "${{ inputs.timezone }}"
+      LOCAL_TIMEZONE: "${{ inputs.local_timezone }}"
     outputs:
       daylight_savings_bool: ${{ steps.return_daylight_savings_bool.outputs.daylight_savings_bool }}
     steps:
@@ -32,7 +32,7 @@ jobs:
         id: return_daylight_savings_bool
         run: |
           export TZ="$TIMEZONE"
-          if [ $(date | cut -d' ' -f5) == $LOCAL_TIMEZONE ]
+          if [ $(date | cut -d' ' -f5) == "$LOCAL_TIMEZONE" ]
           then
             echo "::set-output name=daylight_savings_bool::true"
           else
