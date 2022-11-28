@@ -33,6 +33,10 @@ jobs:
         run: |
           export TZ="$TIMEZONE"
           echo $(date)
+          echo -----
+          cat /etc/os-release
+          echo -----
+          zdump -v America/Los_Angeles grep 2022
           if [ $(date | cut -d' ' -f5) == "$LOCAL_TIMEZONE" ]
           then
             echo "::set-output name=daylight_savings_bool::true"
