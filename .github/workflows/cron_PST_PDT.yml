@@ -11,7 +11,7 @@ jobs:
         
     called_job_2:
       needs: called_job_localtime
-      if: ${{ (github.event.schedule == '45 11 * * *' && !needs.called_job_localtime.outputs.daylight_savings_bool) || (github.event.schedule == '45 10 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool) }}
+      if: ${{ (github.event.schedule == '45 11 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool == false) || (github.event.schedule == '45 10 * * *' && needs.called_job_localtime.outputs.daylight_savings_bool == true) }}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
