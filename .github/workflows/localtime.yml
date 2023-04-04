@@ -40,8 +40,8 @@ jobs:
           if [ $(date | cut -d' ' -f5) == "$LOCAL_TIMEZONE" ]
           then
             echo true
-            echo "::set-output name=daylight_savings_bool::true"
+            echo "daylight_savings_bool=true" >> $GITHUB_OUTPUT
           else
             echo false
-            echo "::set-output name=daylight_savings_bool::false"
+            echo "daylight_savings_bool=false" >> $GITHUB_OUTPUT
           fi
