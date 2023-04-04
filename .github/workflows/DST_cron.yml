@@ -2,15 +2,15 @@ name: DST CRON
 
 on:
   schedule:
-    - cron: '45 10 * * 0-6'
-    - cron: '45 11 * * 0-6'
+    - cron: '00 12 * * 0-6'
+    - cron: '15 12 * * 0-6'
 
 jobs:
     called_job_localtime:
       uses: ./.github/workflows/localtime.yml
     called_job_2:
       needs: called_job_localtime
-      if: ${{ (github.event.schedule == '45 10 * * 0-6' && needs.called_job_localtime.outputs.daylight_savings_bool == 'true') || (github.event.schedule == '45 11 * * 0-6' && needs.called_job_localtime.outputs.daylight_savings_bool == 'false')}}
+      if: ${{ (github.event.schedule == '00 12 * * 0-6' && needs.called_job_localtime.outputs.daylight_savings_bool == 'true') || (github.event.schedule == '15 12 * * 0-6' && needs.called_job_localtime.outputs.daylight_savings_bool == 'false')}}
       uses: ./.github/workflows/reusable_workflow.yml
       with:
         is_spoiler: false
