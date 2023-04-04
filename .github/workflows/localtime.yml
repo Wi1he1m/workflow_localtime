@@ -39,7 +39,9 @@ jobs:
           zdump -v America/Los_Angeles grep 2022
           if [ $(date | cut -d' ' -f5) == "$LOCAL_TIMEZONE" ]
           then
+            echo true
             echo "::set-output name=daylight_savings_bool::true"
           else
+            echo false
             echo "::set-output name=daylight_savings_bool::false"
           fi
