@@ -33,9 +33,9 @@ jobs:
         run: |
           export TZ="$TIMEZONE"
           echo $(date)
-          DST="$(date | cut -d' ' -f5)"
+          DST="$(date | cut -d' ' -f6)"
           echo "$DST"
-          if [ "$(date | cut -d' ' -f5)" = "$LOCAL_TIMEZONE" ]
+          if [ "$(date | cut -d' ' -f6)" = "$LOCAL_TIMEZONE" ]
           then
             echo true
             echo "daylight_savings_bool=1" >> $GITHUB_OUTPUT
