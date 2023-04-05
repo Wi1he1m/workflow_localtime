@@ -35,11 +35,17 @@ jobs:
           echo $(date)
           DST="$(date | cut -d' ' -f6)"
           echo "$DST"
+          echo $(date | cut -d' ' -f1)
+          echo $(date | cut -d' ' -f2)
+          echo $(date | cut -d' ' -f3)
+          echo $(date | cut -d' ' -f4)
+          echo $(date | cut -d' ' -f5)
+          [[ "$(date)" == *"$LOCAL_TIMEZONE"* ]] && echo "substring match" || echo "substring mismatch"
           if [ "$(date | cut -d' ' -f6)" = "$LOCAL_TIMEZONE" ]
           then
-            echo true
+            echo "PDT in effect"
             echo "daylight_savings_bool=1" >> $GITHUB_OUTPUT
           else
-            echo false
+            echo "PST in effect"
             echo "daylight_savings_bool=0" >> $GITHUB_OUTPUT
           fi
