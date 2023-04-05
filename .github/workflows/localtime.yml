@@ -33,11 +33,9 @@ jobs:
         run: |
           export TZ="$TIMEZONE"
           echo $(date)
-          echo -----
-          cat /etc/os-release
-          echo -----
-          zdump -v America/Los_Angeles grep 2022
-          if [ "$(date | cut -d' ' -f5)" == "$LOCAL_TIMEZONE" ]
+          DST="$(date | cut -d' ' -f5)"
+          echo "$DST"
+          if [ "$(date | cut -d' ' -f5)" = "$LOCAL_TIMEZONE" ]
           then
             echo true
             echo "daylight_savings_bool=1" >> $GITHUB_OUTPUT
