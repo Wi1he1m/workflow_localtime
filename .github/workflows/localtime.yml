@@ -44,8 +44,8 @@ jobs:
           if [ "$(date | cut -d' ' -f6)" = "$LOCAL_TIMEZONE" ]
           then
             echo "PDT in effect"
-            echo "daylight_savings_bool=1" >> $GITHUB_OUTPUT
+            echo "daylight_savings_bool=true" >> $GITHUB_OUTPUT
           else
             echo "PST in effect"
-            echo "daylight_savings_bool=0" >> $GITHUB_OUTPUT
+            echo "daylight_savings_bool=false" >> $GITHUB_OUTPUT
           fi
